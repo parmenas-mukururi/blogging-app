@@ -1,0 +1,40 @@
+.post {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid black;
+  margin-bottom: 3rem;
+
+  button {
+    width: max-content;
+    color: teal;
+    background-color: white;
+    border: 1px solid teal;
+    cursor: pointer;
+    align-self: center;
+
+    &:hover {
+        color: white;
+        background-color: teal;
+    }
+
+  }
+
+  img {
+    width: max-content;
+    height: 200px;
+    background-size: cover;
+  }
+
+  .user-info {
+    display: flex;
+    flex-direction: row;
+    gap: 2rem;
+    align-items: center;
+    justify-content: flex-start;
+
+    img {
+      width: 30px;
+      height: 30px;
+    }
+  }
+}
