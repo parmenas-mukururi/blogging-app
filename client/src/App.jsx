@@ -2,6 +2,7 @@ import { useState } from 'react'
 import './App.scss'
 import {
   createBrowserRouter,
+  Navigate,
   Outlet,
   RouterProvider,
 } from "react-router-dom";
@@ -13,6 +14,7 @@ import WriteBlogPage from './routes/Write/WriteBlogPage';
 import SingleBlogPage from "./routes/SingleBlog/SingleBlogPage"
 import Navbar from "./components/Navbar/Navbar"
 import Footer from "./components/Footer/Footer"
+
 
 const Layout = () => {
   return (
@@ -39,7 +41,7 @@ const router = createBrowserRouter([
       },
       {
         path : "/write",
-        element : <WriteBlogPage/>
+        element : <WriteBlogPage/> 
       }
     ]
   },

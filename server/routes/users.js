@@ -1,6 +1,14 @@
+
 import { Router } from "express";
-import { createUser } from "../controllers/user";
-const router = Router()
+import { createUser, login, logout } from "../controllers/user.js";
+import { checkSchema } from "express-validator";
+import { loginSchema, registerSchema } from "../validators/userSchema.js";
+const userRouter = Router()
 
 
-router.post('/register', createUser)
+userRouter.post('/register',checkSchema(registerSchema), createUser)
+userRouter.post("/login", checkSchema(loginSchema), login)
+userRouter.post("/logout", logout)
+
+
+export default userRouter

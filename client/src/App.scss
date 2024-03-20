@@ -1,8 +1,14 @@
 #root {
   max-width: 1280px;
   margin: 0 auto;
-  padding: 2rem;
+  padding: 0;
   text-align: center;
+  $background : #ffffff;
+  $text-primary : #000;
+  $text-secondary : #8e05c2;
+  $accent : #8e05c2;
+  $border : #333;
+  $form-background : #fff;
 }
 /* 
 .logo {

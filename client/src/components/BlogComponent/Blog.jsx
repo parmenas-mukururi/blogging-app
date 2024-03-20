@@ -1,6 +1,8 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import profile from '../../assets/icons/profile.svg'
 import './Blog.scss'
+import { Link, useLocation } from 'react-router-dom'
+import axios from 'axios'
 
 const posts = [
     {
@@ -65,6 +67,35 @@ const posts = [
     }
 ]
 const Blog = () => {
+
+    const [posts, setPosts] = useState([])
+    const location = useLocation()
+    const category = location.search
+    useEffect(() => {
+        const fetchPosts = async () => {
+            try {
+                const response = await axios.get('http://localhost:5000/posts')
+                console.log(response.data)
+                setPosts(response.data)
+            } catch (error) {
+                console.log(error.message)
+            }
+        }
+        fetchPosts()
+    }, [])
+
+    useEffect(() => {
+
+        const fetchPostsByCategory = async () => {
+            try {
+                const response = await axios.get(`http://localhost:5000/posts${category}`)
+                setPosts(response.data)
+            } catch (error) {
+                console.log(error.message)
+            }
+        }
+        fetchPostsByCategory()
+    }, [category])
     return (
         <>
             {
@@ -78,7 +109,8 @@ const Blog = () => {
                         </div>
                         <h1>{post.title}</h1>
                         <p>{post.body}</p>
-                        <button >Read more</button>
+                        <Link to="/post/:id"><button >Read more</button>
+                        </Link>
                     </div>
                 ))
             }

@@ -1,0 +1,17 @@
+.blog {
+    display: flex;
+
+    .editor {
+        flex: 5;
+    }
+
+    .menu{
+        flex: 2;
+        .category{
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+           
+        }
+    }
+}

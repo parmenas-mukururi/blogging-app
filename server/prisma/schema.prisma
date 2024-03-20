@@ -13,9 +13,44 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model users {
-  id       String  @id @default(uuid())
-  email    String  @unique
+model User {
+  id       String    @id @default(uuid())
+  email    String    @unique
   username String?
   password String
+  posts    Post[]
+  comments Comment[]
+  like     Like[]
+}
+
+model Post {
+  id        String    @id @default(uuid())
+  title     String    @db.Text
+  content   String    @db.Text
+  category  String
+  createdAt DateTime  @default(now())
+  updatedAt DateTime?
+  author    User      @relation(fields: [user_id], references: [id])
+  user_id   String
+  comments  Comment[]
+  like      Like[]
+}
+
+model Comment {
+  id        String   @id @default(uuid())
+  content   String   @db.Text
+  createdAt DateTime @default(now())
+  post      Post     @relation(fields: [post_id], references: [id])
+  post_id   String
+  author    User     @relation(fields: [user_id], references: [id])
+  user_id   String
+}
+
+model Like {
+  id      String @id @default(uuid())
+  count   Int
+  user    User   @relation(fields: [user_id], references: [id])
+  user_id String
+  post    Post   @relation(fields: [post_id], references: [id])
+  post_id String
 }

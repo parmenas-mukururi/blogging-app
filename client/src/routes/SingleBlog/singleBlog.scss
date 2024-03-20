@@ -1,0 +1,37 @@
+.blog-container {
+  .user-info {
+    display: block;
+    justify-content: left;
+
+    .user {
+      display: flex;
+      flex-direction: row;
+      gap: 2rem;
+      align-items: center;
+      justify-content: flex-start;
+
+      img {
+        width: 30px;
+        height: 30px;
+      }
+    }
+    .edit-delete-icons {
+      gap: 2rem;
+      img {
+        width: 30px;
+        height: 30px;
+      }
+    }
+  }
+  .comment-icons {
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    gap: 2rem;
+    border-top: 1px solid black;
+    border-bottom: 1px solid black;
+    img {
+      width: 30px;
+      height: 30px;
+    }
+  }
+}

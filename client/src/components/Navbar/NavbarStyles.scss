@@ -3,18 +3,49 @@
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  
-    .links {
-      display: flex;
-      gap: 2rem;
-      flex-direction: row;
-      .link {
-        text-decoration: none;
-      }
+  .link {
+    text-decoration: none;
+    color: inherit;
+  }
+  .links {
+    display: flex;
+    gap: 2rem;
+    flex-direction: row;
+
+    .link {
+      text-decoration: none;
+      color: inherit;
     }
+  }
   .logins {
     display: flex;
     flex-direction: row;
     gap: 1.5rem;
+  }
+  .auth-buttons {
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+    align-items: center;
+    justify-content: center;
+    .link {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .write {
+      display: flex;
+      flex-direction: row;
+      gap: 0.2rem;
+      justify-content: center;
+      align-items: center;
+      width: 5rem;
+      border: 1px solid teal;
+      border-radius: 10px;
+      img {
+        width: 20px;
+        height: 20px;
+      }
+    }
   }
 }
