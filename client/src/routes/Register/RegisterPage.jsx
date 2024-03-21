@@ -21,7 +21,7 @@ const RegisterPage = () => {
     console.log(inputs)
     e.preventDefault()
     try {
-      const res = await axios.post("http://localhost:5000/register", inputs, {withCredentials: true})
+      await axios.post("http://localhost:5000/register", inputs, {withCredentials: true})
       navigate('/login')
 
     } catch (error) {

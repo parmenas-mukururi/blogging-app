@@ -2,9 +2,9 @@ import { PrismaClient } from "@prisma/client";
 import { matchedData, validationResult } from "express-validator";
 const prisma = new PrismaClient();
 
-const getComments = () => {
+const getComments = async () => {
   try {
-    const comments = prisma.comment.findMany();
+    const comments = await prisma.comment.findMany();
     res.status(200).json(comments);
   } catch (error) {
     res.status(500).send("Error fetching comments");
@@ -38,6 +38,9 @@ const writeComment = async () => {
         author: {
           user_id: req.decoded.userId,
         },
+        post : {
+            post_id: req.decoded.postId,
+        }
       },
       post: {
         connect: {

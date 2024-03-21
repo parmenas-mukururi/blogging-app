@@ -16,7 +16,6 @@ const Comment = () => {
         <span>Reply</span>
     </div>
 </div>
-
     </>
   )
 }

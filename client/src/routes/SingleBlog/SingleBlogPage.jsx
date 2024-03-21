@@ -6,7 +6,7 @@ import like from "../../assets/icons/like.svg"
 import profile from "../../assets/icons/profile.svg"
 import "./singleBlog.scss"
 import { AuthContext } from '../../context/authContext'
-import { useLocation, useNavigate, useParams } from 'react-router-dom'
+import { Link, useNavigate, useParams } from 'react-router-dom'
 import axios from 'axios'
 import moment from "moment"
 
@@ -33,16 +33,26 @@ const SingleBlogPage = () => {
     fetchPost()
   }, [id])
 
-  console.log(post)
-const handleDelete = async () => {
-  try {
-    await axios.delete(postUrl)
-    setPost(null)
-    navigate("/")
-  } catch (error) {
-    console.error(error)
+
+  // const handleEdit = async () => {
+  //   try {
+  //     const updatedPost = await axios.put(postUrl, { withCredentials: true })
+  //     setPost(updatedPost)
+  //     console.log(updatedPost)
+  //   } catch (error) {
+  //     console.error(error)
+  //   }
+  // }
+
+  const handleDelete = async () => {
+    try {
+      await axios.delete(postUrl, { withCredentials: true })
+      setPost(null)
+      navigate("/")
+    } catch (error) {
+      console.error(error)
+    }
   }
-}
 
   return (
     post &&
@@ -56,10 +66,10 @@ const handleDelete = async () => {
             <p>{post.author.username}</p>
           </div>
           <p>Posted {moment(post.createdAt).fromNow()}</p>
-          {currentUser.username === post.author.username &&
+          {currentUser && currentUser.username === post.author.username &&
             <div className="edit-delete-icons">
-              <img src={edit} alt="edit" />
-              <img src={remove} alt="delete" onClick={handleDelete}/>
+              <Link to={`/write?edit=${post.id}`} className='link'><img src={edit} alt="edit" /></Link>
+              <img src={remove} alt="delete" onClick={handleDelete} />
             </div>
           }
 

@@ -15,8 +15,8 @@ export const postSchema = {
             errorMessage: "Post must be a string",
         },
         isLength: {
-            options: { min: 100 },
-            errorMessage: "Post should be at least 100 characters",
+            options: { min: 10 },
+            errorMessage: "Post should be at least 10 characters",
         },
     },
     category : {

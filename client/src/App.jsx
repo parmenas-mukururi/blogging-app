@@ -42,6 +42,10 @@ const router = createBrowserRouter([
       {
         path : "/write",
         element : <WriteBlogPage/> 
+      },
+      {
+        path: "*",
+        element: <h1>Not Found</h1>
       }
     ]
   },

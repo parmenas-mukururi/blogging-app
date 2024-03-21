@@ -35,6 +35,20 @@ const createPost = async (req, res) => {
   }
 };
 
+const searchPost = async (req, res) => {
+    try {
+        const searchedPosts = await prisma.post.findMany({
+            where: {
+                title: {
+                    contains: req.body.title
+                }
+            }
+        })
+        res.status(200).json(searchedPosts);
+    } catch (error) {
+        console.log(error.message)
+    }
+}
 const getPosts = async (req, res) => {
   try {
     const category = req.query.cat;
@@ -118,4 +132,5 @@ export {
   getSinglePost,
   updatePost,
   deletePost,
+  searchPost
 };
