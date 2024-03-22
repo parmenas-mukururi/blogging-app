@@ -22,7 +22,9 @@ const SearchByTitle = ({ onSearch }) => {
   }
   return (
     <>
-      <input className='search' type="text" name="search" id="search" placeholder='Search post' value={searchText} onChange={handleChange} onKeyDown={handleKeyDown} />
+      <div className="search-box">
+        <input type="text" name="search" id="search" placeholder='Search post' value={searchText} onChange={handleChange} onKeyDown={handleKeyDown} />
+      </div>
     </>
   )
 }

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import "./NavbarStyles.scss";
 import { Link } from 'react-router-dom';
 import { useContext } from 'react';
@@ -7,12 +7,15 @@ import write from "../../assets/icons/write.svg"
 
 const Navbar = () => {
   const { currentUser, logout } = useContext(AuthContext);
+  const [showLinks, setShowLinks] = useState(false)
+
   return (
     <>
       <div className="header">
         <div className="logo">
           <Link to="/" className='link'><h3>BloomBlogs</h3></Link>
         </div>
+        
         <div className="links">
           <Link className='link' to="/?cat=technology"><h4>Technology</h4></Link>
           <Link className='link' to="/?cat=health"><h4>Health</h4></Link>

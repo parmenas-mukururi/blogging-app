@@ -1,8 +1,11 @@
+@import "../../partials/variables";
+
 .header {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
+  background-color: $background;
   .link {
     text-decoration: none;
     color: inherit;

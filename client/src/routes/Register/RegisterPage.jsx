@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import "./Register.scss"
 import { Link, useNavigate } from 'react-router-dom'
 import axios from 'axios'
+import { baseUrl } from '../../constants/baseUrl'
 
 const RegisterPage = () => {
   const navigate = useNavigate()
@@ -21,7 +22,7 @@ const RegisterPage = () => {
     console.log(inputs)
     e.preventDefault()
     try {
-      await axios.post("http://localhost:5000/register", inputs, {withCredentials: true})
+      await axios.post(`${baseUrl}/register`, inputs, {withCredentials: true})
       navigate('/login')
 
     } catch (error) {
@@ -41,7 +42,7 @@ const RegisterPage = () => {
         <input type="password" placeholder="Password" id="password" name='password' onChange={handleChange} required />
         {err  && <p className='error'>{err}</p>}
         <button type="submit" onClick={handleRegister}>Register</button>
-        <p>Do you have an account? <Link to="/login">Login</Link></p>
+        <p>Do you have an account? <Link className='link' to="/login">Login</Link></p>
 
       </form>
     </>

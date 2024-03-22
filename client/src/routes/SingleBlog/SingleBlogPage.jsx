@@ -9,6 +9,7 @@ import { AuthContext } from '../../context/authContext'
 import { Link, useNavigate, useParams } from 'react-router-dom'
 import axios from 'axios'
 import moment from "moment"
+import { baseUrl } from '../../constants/baseUrl'
 
 
 const SingleBlogPage = () => {
@@ -17,7 +18,7 @@ const SingleBlogPage = () => {
   const { id } = useParams()
   const navigate = useNavigate()
   const { currentUser } = useContext(AuthContext)
-  const postUrl = `http://localhost:5000/post/${id}`
+  const postUrl = `${baseUrl}/post/${id}`
 
   useEffect(() => {
     const fetchPost = async () => {

@@ -1,5 +1,6 @@
 import axios from "axios";
 import { createContext, useEffect, useState } from "react";
+import { baseUrl } from "../constants/baseUrl";
 
 const AuthContext = createContext();
 
@@ -9,7 +10,7 @@ const AuthContextProvider = ({ children }) => {
 
   const login = async (inputs) => {
     try {
-      const res = await axios.post("http://localhost:5000/login", inputs)
+      const res = await axios.post(`${baseUrl}/login`, inputs)
       setCurrentUser(res.data)
     } catch (error) {
       console.log(error.message)
@@ -18,16 +19,13 @@ const AuthContextProvider = ({ children }) => {
 
   const logout = async () => {
     try {
-      await axios.post("http://localhost:5000/logout")
+      await axios.post(`${baseUrl}/logout`)
       setCurrentUser(null)
     } catch (error) {
       console.log(error.message)
     }
   }
 
-  // useEffect(() => {
-  //   localStorage.setItem("user", JSON.stringify(currentUser))
-  // }, [currentUser])
   return (
     <AuthContext.Provider value={{ currentUser, setCurrentUser, login, logout}}>
       {children}

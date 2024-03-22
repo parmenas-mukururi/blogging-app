@@ -3,6 +3,7 @@ import "./Login.scss"
 import axios from "axios"
 import { Link, useNavigate } from 'react-router-dom'
 import { AuthContext } from '../../context/authContext'
+import { baseUrl } from '../../constants/baseUrl'
 const LoginPage = () => {
   const { setCurrentUser } = useContext(AuthContext);
 
@@ -23,19 +24,9 @@ const LoginPage = () => {
     console.log(inputs)
     e.preventDefault()
     try {
-      const res = await axios.post("http://localhost:5000/login", inputs, {withCredentials: true}) ;
-      // const res = await fetch("http://localhost:5000/login", {
-      //   method: "POST",
-      //   headers: {
-      //     "Content-Type": "application/json",
-      //   },
-      //   credentials: 'include',
-      //   body: JSON.stringify(inputs),
-      // })
-      
+      const res = await axios.post(`${baseUrl}/login`, inputs, {withCredentials: true}) ;
       console.log(res.data)
       const data = res.data;
-      console.log('Data ', data);
       setCurrentUser(data)
       navigate('/')
 
@@ -55,7 +46,7 @@ const LoginPage = () => {
         <input required type="password" placeholder="Password" id="password" name='password' onChange={handleChange} />
         {err && <p className='error'>{err}</p>}
         <button type="submit" onClick={handleSubmit}>Login</button>
-        <p>Don't have an account? <Link to="/register">Register</Link></p>
+        <p>Don't have an account? <Link className='link' to="/register">Register</Link></p>
       </form>
     </>
   )

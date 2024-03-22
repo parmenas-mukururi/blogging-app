@@ -5,6 +5,7 @@ import 'react-quill/dist/quill.snow.css';
 import './writeBlog.scss';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import { AuthContext } from '../../context/authContext';
+import { baseUrl } from '../../constants/baseUrl';
 
 const WriteBlogPage = () => {
   const query = location.search;
@@ -24,7 +25,7 @@ const WriteBlogPage = () => {
 
   const handlePublish = async () => {
     try {
-      const res = await axios.post('http://localhost:5000/posts', { title, content, category }, { withCredentials: true });
+      const res = await axios.post(`${baseUrl}/posts`, { title, content, category }, { withCredentials: true });
       console.log(res.data);
       navigate("/")
     } catch (error) {
@@ -48,7 +49,7 @@ const WriteBlogPage = () => {
     const editId = params.get("edit");
     if (!editId) return;
     const retrievePost = async () => {
-      const response = await axios.get(`http://localhost:5000/post/${editId}`, { withCredentials: true })
+      const response = await axios.get(`${baseUrl}/post/${editId}`, { withCredentials: true })
       const post = response.data;
       setTitle(post.title);
       setCategory(post.category);

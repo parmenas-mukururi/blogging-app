@@ -4,6 +4,7 @@ import { Link, useLocation, useSearchParams } from 'react-router-dom'
 import axios from 'axios'
 import "./HomePage.scss"
 import SearchByTitle from '../../components/Search/SearchByTitle'
+import { baseUrl } from '../../constants/baseUrl'
 import moment from 'moment'
 
 const HomePage = () => {
@@ -14,7 +15,7 @@ const HomePage = () => {
   useEffect(() => {
     const fetchPosts = async () => {
       try {
-        const postsUrl = `http://localhost:5000/posts${query}`;
+        const postsUrl = `${baseUrl}/posts${query}`;
         const response = await axios.get(postsUrl)
         setPosts(response.data)
       } catch (error) {
