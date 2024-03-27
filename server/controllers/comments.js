@@ -2,9 +2,16 @@ import { PrismaClient } from "@prisma/client";
 import { matchedData, validationResult } from "express-validator";
 const prisma = new PrismaClient();
 
-const getComments = async () => {
+const getComments = async (req, res) => {
   try {
-    const comments = await prisma.comment.findMany();
+    const comments = await prisma.comment.findMany({
+      where: {
+        post_id: req.params.id,
+      },
+      include: {
+        author: true,
+      },
+    });
     res.status(200).json(comments);
   } catch (error) {
     res.status(500).send("Error fetching comments");
@@ -24,33 +31,43 @@ const getComments = async () => {
 //   }
 // };
 
-const writeComment = async () => {
+const writeComment = async (req, res) => {
   try {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
-      return res.status(400).send({ status: "fail", errors }).end();
+      return res.status(400).json({ status: "fail", errors: errors.array() });
     }
-    const data = matchedData(req);
+
+    const { content, post_id } = req.body;
+    const { id } = req.params;
+    console.log({post_id})
+    const userId = req.decoded.userId;
+console.log(content)
     const newComment = await prisma.comment.create({
-      data: data,
-      ...data,
-      connect: {
+      data: {
+        content: content,
         author: {
-          user_id: req.decoded.userId,
+          connect: {
+            id: userId,
+          },
         },
-        post : {
-            post_id: req.decoded.postId,
-        }
-      },
-      post: {
-        connect: {
-          post_id: req.decoded.postId,
+        post: {
+          connect: {
+            id: post_id,
+          },
         },
       },
+      include: {
+        author: true,
+      }
     });
-    res.status(201).send(newComment);
+
+    res.status(201).json(newComment);
   } catch (error) {
-    res.status(400).send(error.message);
+    console.error("Error writing comment:", error);
+    res
+      .status(500)
+      .json({ status: "error", message: "Failed to write comment" });
   }
 };
 

@@ -10,6 +10,7 @@ import { Link, useNavigate, useParams } from 'react-router-dom'
 import axios from 'axios'
 import moment from "moment"
 import { baseUrl } from '../../constants/baseUrl'
+import Comments from '../../components/Comment/Comments'
 
 
 const SingleBlogPage = () => {
@@ -32,18 +33,7 @@ const SingleBlogPage = () => {
       }
     }
     fetchPost()
-  }, [id])
-
-
-  // const handleEdit = async () => {
-  //   try {
-  //     const updatedPost = await axios.put(postUrl, { withCredentials: true })
-  //     setPost(updatedPost)
-  //     console.log(updatedPost)
-  //   } catch (error) {
-  //     console.error(error)
-  //   }
-  // }
+  }, [id, postUrl])
 
   const handleDelete = async () => {
     try {
@@ -75,15 +65,12 @@ const SingleBlogPage = () => {
           }
 
         </div>
-        <div className="comment-icons">
-          <img src={comment} alt="comment" />
-          <img src={like} alt="like" />
-        </div>
+
         <div className="content">
           {post.content}
         </div>
       </div>
-
+      <Comments post_id={id} />
     </>
   )
 }

@@ -1,5 +1,5 @@
 export const commentSchema = {
-    comment: {
+    content: {
       notEmpty: {
         errorMessage: "Comment cannot be empty",
       },

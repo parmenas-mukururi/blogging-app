@@ -87,23 +87,28 @@ const getSinglePost = async (req, res) => {
 };
 
 const updatePost = async (req, res) => {
+  console.log('Update post ', req.body)
   try {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
       return res.status(400).send({ status: "fail", errors }).end();
     }
     const data = matchedData(req);
+    console.log({data})
     const updatedPost = await prisma.post.update({
       where: {
         id: req.params.id,
       },
-      data: data,
+      data: req.body
     });
+    console.log({updatePost: updatedPost})
     res.status(200).json(updatedPost).end();
   } catch (error) {
     res.status(500).json({ status: "fail", message: "Error getting posts" });
   }
 };
+
+
 const deletePost = async (req, res) => {
   try {
     await prisma.post.delete({

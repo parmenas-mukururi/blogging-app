@@ -11,7 +11,7 @@ postRouter.post("/posts", requiredAuth, checkSchema(postSchema), createPost)
 postRouter.get("/posts", getPosts)
 postRouter.post("/posts/search", searchPost)
 postRouter.get("/post/:id", getSinglePost)
-postRouter.put("/post/:id", requiredAuth, updatePost)
+postRouter.put("/posts/:id", requiredAuth, updatePost)
 postRouter.delete("/post/:id", requiredAuth, deletePost)
 
 export default postRouter

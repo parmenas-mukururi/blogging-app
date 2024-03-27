@@ -9,6 +9,7 @@ import { baseUrl } from '../../constants/baseUrl';
 
 const WriteBlogPage = () => {
   const query = location.search;
+  const params = new URLSearchParams(query);
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
   const [category, setCategory] = useState('');
@@ -25,7 +26,15 @@ const WriteBlogPage = () => {
 
   const handlePublish = async () => {
     try {
-      const res = await axios.post(`${baseUrl}/posts`, { title, content, category }, { withCredentials: true });
+      const editId = params.get("edit");
+      let res = undefined;
+      console.log({content: content, title: title})
+      if (editId) {
+        res = await axios.put(`${baseUrl}/posts/${editId}`, { title, content, category }, { withCredentials: true });
+
+      } else {
+        res = await axios.post(`${baseUrl}/posts`, { title, content, category }, { withCredentials: true });
+      }
       console.log(res.data);
       navigate("/")
     } catch (error) {
@@ -45,7 +54,6 @@ const WriteBlogPage = () => {
 
   useEffect(() => {
     if (!query) return;
-    const params = new URLSearchParams(query);
     const editId = params.get("edit");
     if (!editId) return;
     const retrievePost = async () => {
