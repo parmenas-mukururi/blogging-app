@@ -56,7 +56,7 @@ const Comments = ({ post_id }) => {
                         {comments.map((comment) => (
                             <div className="comment" key={comment.id}>
                                 <div className="user-info">
-                                    <img src={comment.author.profilePicture} alt="User" />
+                                    {comment.author.profilePicture && <img src={comment.author.profilePicture} alt="" />}
                                     <span>{comment.author.username}</span>
                                     <span>Posted {moment(comment.createdAt).fromNow()}</span>
                                 </div>
