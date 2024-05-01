@@ -24,6 +24,48 @@
     display: flex;
     flex-direction: row;
     gap: 1.5rem;
+    .login {
+      display: inline-block;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      background-color: #007bff; // Blue color, you can change it to match your app's theme
+      color: #fff; // White text color
+      font-size: 16px;
+      font-weight: bold;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    
+      &:hover {
+        background-color: #0056b3; // Darker blue on hover
+      }
+    
+      &:focus {
+        outline: none; // Remove default focus outline
+      }
+    }
+    .register {
+      display: inline-block;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      background-color: #28a745; // Green color, you can change it to match your app's theme
+      color: #fff; // White text color
+      font-size: 16px;
+      font-weight: bold;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    
+      &:hover {
+        background-color: #218838; // Darker green on hover
+      }
+    
+      &:focus {
+        outline: none; // Remove default focus outline
+      }
+    }
   }
   .auth-buttons {
     display: flex;
