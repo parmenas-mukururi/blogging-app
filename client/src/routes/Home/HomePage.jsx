@@ -43,7 +43,7 @@ const HomePage = () => {
             </div>
             <h1>{post.title}</h1>
             <p>{post.body}</p>
-            <Link to={`/post/${post.id}`}><button >Read more</button>
+            <Link to={`/post/${post.id}`}><button className='read-more'>Read more</button>
             </Link>
           </div>
         ))

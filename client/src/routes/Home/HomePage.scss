@@ -1,41 +1,68 @@
+@import "../../partials/variables";
 .post {
-    display: flex;
-    flex-direction: column;
-    border: 1px solid black;
-    margin-bottom: 3rem;
-  
-    button {
-      width: max-content;
-      color: teal;
-      background-color: white;
-      border: 1px solid teal;
-      cursor: pointer;
-      align-self: center;
-  
-      &:hover {
-          color: white;
-          background-color: teal;
-      }
-  
-    }
-  
-    img {
-      width: max-content;
-      height: 200px;
-      background-size: cover;
-    }
-  
-    .user-info {
-      display: flex;
-      flex-direction: row;
-      gap: 2rem;
-      align-items: center;
-      justify-content: flex-start;
-  
-      img {
-        width: 30px;
-        height: 30px;
-      }
+  display: flex;
+  flex-direction: column;
+  border: 1px solid black;
+  margin-bottom: 3rem;
+
+  button {
+    width: max-content;
+    color: teal;
+    background-color: white;
+    border: 1px solid teal;
+    cursor: pointer;
+    align-self: center;
+
+    &:hover {
+      color: white;
+      background-color: teal;
     }
   }
-  
+
+  img {
+    width: max-content;
+    height: 200px;
+    background-size: cover;
+  }
+
+  .user-info {
+    display: flex;
+    flex-direction: row;
+    gap: 2rem;
+    align-items: center;
+    justify-content: flex-start;
+
+    img {
+      width: 30px;
+      height: 30px;
+    }
+  }
+  .read-more {
+    display: inline-block;
+    background-color: $btn-bg-color;
+    color: $btn-text-color;
+    padding: $btn-padding;
+    font-size: $btn-font-size;
+    text-align: center;
+    text-decoration: none;
+    border-radius: $btn-border-radius;
+    transition: background-color $btn-transition-duration,
+      color $btn-transition-duration;
+    border: none;
+    cursor: pointer;
+
+    &:hover {
+      background-color: $btn-hover-bg-color;
+      color: $btn-hover-text-color;
+    }
+
+    &:active {
+      background-color: darken($btn-bg-color, 15%);
+    }
+
+    &:focus {
+      outline: none;
+      box-shadow: 0 0 0 3px rgba($btn-bg-color, 0.5);
+    }
+  }
+}
